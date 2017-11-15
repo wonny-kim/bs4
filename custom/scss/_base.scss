@@ -93,19 +93,18 @@ code {
 }
 
 /* Carousel fade transition */
-//.carousel-fade {
-//	.carousel-item {
-//		display: block;
-//		position: absolute;
-//		opacity: 0;
-//		transition: opacity .75s ease-in-out;
-//    -webkit-transition-property: opacity;
-//    -webkit-transition-duration: .75s ease-in-out;
-//		&.active {
-//			opacity: 1;
-//		}
-//	}
-//}
+.carousel-fade {
+  .carousel-item {
+    position: absolute;
+    display: block;
+    opacity: 0;
+    transition: opacity .75s ease-in-out;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+}
 
 .sidemenu {
   span {
@@ -198,9 +197,7 @@ code {
   width: 10rem;
   height: 10rem;
   margin: -5rem 0 0 -5rem;
-}
 
-.loading {
   &-img {
     width: 8rem;
     height: 8rem;
@@ -254,4 +251,3 @@ code {
     margin-top: 1rem;
   }
 }
-
