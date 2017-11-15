@@ -148,7 +148,7 @@ code {
       }
     }
 
-    .active {
+    &.active {
       a {
         color: rgba(0, 0, 0, 1);
         background-color: rgba(255, 193, 7, 1);
@@ -254,3 +254,4 @@ code {
     margin-top: 1rem;
   }
 }
+

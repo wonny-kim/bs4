@@ -25,9 +25,7 @@ su $USERID
 mkdir -p /home/$userID/www/public/assets/css
 mkdir /home/$userID/www/public/assets/js
 
-
-
-cp -rf custom /home/$USERID/www/
+cp -rf custom/* /home/$USERID/www/public/assets/
 
 cd /home/$USERID/www
 
@@ -36,6 +34,9 @@ wget https://github.com/twbs/bootstrap/archive/v"$BOOTSTRAP_VER".zip
 unzip v"$BOOTSTRAP_VER".zip
 
 mv bootstrap-$BOOTSTRAP_VER bootstrap4
+
+chown -R "$USERID"."$USERID" /home/$USERID
+chmod 705 /home/$USERID
 
 su $USERID
 cd ~/www/bootstrap4
@@ -69,7 +70,7 @@ fi
 
 echo "PROC : start install bootstrap"
 
-sed -i 's/js-compile-\*\\""/js-compile-\*\\""\,\n    "watch-custom": "nodemon --ignore js\/ --ignore dist\/ -e scss -x \\"npm run css-custom\\"",\n    "css-custom": "npm-run-all --parallel css-lint-custom css-compile-custom --sequential css-prefix-custom css-minify-custom",\n    "css-lint-custom": "stylelint --config build\/\.stylelintrc --syntax scss \\"\.\.\/custom\/scss\/\*\*\/\*\.scss\\"",\n    "css-compile-custom": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 \.\.\/custom\/scss\/custom.scss \.\.\/assets\/css\/bootstrap-custom.css",\n    "css-prefix-custom": "postcss --config build\/postcss\.config\.js --replace \\"\.\.\/assets\/css\/bootstrap-custom\.css\\"",\n    "css-minify-custom": "cleancss --level 1 --source-map --source-map-inline-sources --output \.\.\/assets\/css\/bootstrap-custom.min.css \.\.\/assets\/css\/bootstrap-custom\.css"/' package.json
+sed -i 's/js-compile-\*\\""/js-compile-\*\\""\,\n    "watch-custom": "nodemon --watch \.\.\/public\/assets\/scss\/ -e scss -x \\"npm run css-custom\\"",\n    "css-custom": "npm-run-all --parallel css-lint-custom css-compile-custom --sequential css-prefix-custom css-minify-custom",\n    "css-lint-custom": "stylelint --config build\/\.stylelintrc --syntax scss \\"\.\.\/public\/assets\/scss\/\*\*\/\*\.scss\\"",\n    "css-compile-custom": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 \.\.\/public\/assets\/scss\/custom.scss \.\.\/public\/assets\/css\/bootstrap-custom.css",\n    "css-prefix-custom": "postcss --config build\/postcss\.config\.js --replace \\"\.\.\/public\/assets\/css\/bootstrap-custom\.css\\"",\n    "css-minify-custom": "cleancss --level 1 --source-map --source-map-inline-sources --output \.\.\/public\/assets\/css\/bootstrap-custom.min.css \.\.\/public\/assets\/css\/bootstrap-custom\.css"/' package.json
 
 npm install
 npm install jquery --save-dev
@@ -77,4 +78,5 @@ npm install jquery --save-dev
 sudo gem install bundler
 bundle install
 
-
+cp -rf node_modules/popper.js/dist/umd/popper.min.* /home/$USERID/www/public/assets/js/
+cp -rf node_modules/jquery/dist/jquery.min.* /home/$USERID/www/public/assets/js/
