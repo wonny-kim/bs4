@@ -4,6 +4,7 @@
 # variable
 # change all to yours below.
 USERID=temp_userid
+HTML_DIR=www
 BOOTSTRAP_VER=4.0.0-beta.2
 
 echo "PROC : install nodeJS"
@@ -22,12 +23,12 @@ edit_visudo
 su $USERID
 
 
-mkdir -p /home/$userID/www/public/assets/css
-mkdir /home/$userID/www/public/assets/js
+mkdir -p /home/$USERID/$HTML_DIR/public/assets/css
+mkdir /home/$USERID/$HTML_DIR/public/assets/js
 
-cp -rf custom/* /home/$USERID/www/public/assets/
+cp -rf custom/* /home/$USERID/$HTML_DIR/public/assets/
 
-cd /home/$USERID/www
+cd /home/$USERID/$HTML_DIR
 
 wget https://github.com/twbs/bootstrap/archive/v"$BOOTSTRAP_VER".zip
 
@@ -39,7 +40,7 @@ chown -R "$USERID"."$USERID" /home/$USERID
 chmod 705 /home/$USERID
 
 su $USERID
-cd ~/www/bootstrap4
+cd ~/$HTML_DIR/bootstrap4
 
 # install RVM & RUBY
 echo "PROC : start install rvm"
@@ -78,5 +79,5 @@ npm install jquery --save-dev
 sudo gem install bundler
 bundle install
 
-cp -rf node_modules/popper.js/dist/umd/popper.min.* /home/$USERID/www/public/assets/js/
-cp -rf node_modules/jquery/dist/jquery.min.* /home/$USERID/www/public/assets/js/
+cp -rf node_modules/popper.js/dist/umd/popper.min.* /home/$USERID/$HTML_DIR/public/assets/js/
+cp -rf node_modules/jquery/dist/jquery.min.* /home/$USERID/$HTML_DIR/public/assets/js/
