@@ -192,7 +192,7 @@ code {
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index: 1;
+  z-index: 2000;
   display: none;
   width: 10rem;
   height: 10rem;
@@ -211,13 +211,31 @@ code {
     position: relative;
     top: -8rem;
     left: 0;
-    z-index: 1;
+    z-index: 2010;
     width: 8rem;
     height: 8rem;
     font-weight: 800;
     line-height: 8rem;
     text-align: center;
     vertical-align: middle;
+  }
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 

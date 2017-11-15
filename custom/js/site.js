@@ -152,11 +152,11 @@ function show_html(type, group, page) {
       //$('#'+type+'-content').html(result);
     },
     beforeSend:function() {
-      $("#loader").css("display","block");
+      $(".loader").css("display","block");
     },
     complete: function() {
       if(type !== "main") {
-        $("#loader").css("display","none");
+        $(".loader").css("display","none");
         Holder.addTheme(
           "dark",
           {
@@ -177,7 +177,7 @@ function show_html(type, group, page) {
         //add scroll-spy
         var t_scroll_spy = $('[data-spy="scroll"]');
         t_scroll_spy.scrollspy({ target: '#'+t_scroll_spy.siblings('nav').prop('id') });
-        
+
         // custom-file-iput
         $("input.custom-file-input").change(function() {
           var path = $(this).val().split('\\');
