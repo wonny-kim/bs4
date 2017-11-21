@@ -23,7 +23,6 @@ then
 	exit $E_NOTROOT
 fi
 
-
 echo
 
 select menu in "LARAVEL" "BOOTSTRAP"
