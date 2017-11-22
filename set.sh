@@ -103,6 +103,7 @@ if [ "${menu}" == "LARAVEL" ];then
 	chmod 757 bootstrap/cache
 
 	su - ${USERID} -c "cd ~/${HTML_DIR};npm install"
+	su - ${USERID} -c "cd ~/${HTML_DIR};php artisan storage:link"
 
 	echo -e "\033[01;33mPROC\t\033[0m : \033[01;32mcomplete install \033[33mLARAVEL\033[0m"
 fi
