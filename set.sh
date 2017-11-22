@@ -75,6 +75,9 @@ NameVirtualHost *:80
 edit_vhost
 fi
 
+yum install -y gcc-c++ make nasm
+yum install -y libffi-devel readline-devel sqlite-devel libyaml-devel
+
 if [ "${menu}" == "LARAVEL" ];then
 	echo -e "\033[01;33mPROC\t\033[0m : \033[01;32mstart install \033[33mLARAVEL\033[0m"
 	if [ `composer -V | awk '{print $1}'` != "Composer" ];then
@@ -94,6 +97,8 @@ if [ "${menu}" == "LARAVEL" ];then
 
 	cd ${HTML_DIR}
 
+	chmod 705 /home/${USERID}
+
 	find storage -type d -exec chmod 757 {} \;
 	chmod 757 bootstrap/cache
 
@@ -108,8 +113,6 @@ if [ "${menu}" == "BOOTSTRAP" ];then
 	if [[ `node -v` != v* ]];then
 		curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
 		yum install -y nodejs
-		yum install -y gcc-c++ make
-		yum install -y libffi-devel readline-devel sqlite-devel libyaml-devel
 		echo -e "\033[01;33mPROC\t\033[0m : \033[01;32mcomplete install \033[33mNODEJS\033[0m"
 	else
 		echo -e "\033[01;33mSKIP\t\033[0m : \033[01;32malready installed \033[33mNODEJS\033[0m"
